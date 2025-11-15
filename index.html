@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-neon">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeCrypto CLUB • AI Mining Command</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="logo">BeCrypto <span>CORE</span></div>
+            <div class="header-actions">
+                <button id="themeToggle" class="btn ghost">Cycle Theme</button>
+                <div class="status-dot" id="apiStatus">API: <span class="badge badge-off">Waiting</span></div>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            <section class="panel panel-wide" id="marketPanel">
+                <div class="panel-header">
+                    <h2>Market Prices</h2>
+                    <div class="panel-actions">
+                        <input type="search" id="coinSearch" placeholder="Search coin..." aria-label="Search coins">
+                        <form id="addCoinForm" class="inline-form" autocomplete="off">
+                            <input type="text" id="addCoinInput" placeholder="Add coin symbol" aria-label="Add coin symbol">
+                            <button type="submit" class="btn primary">Add</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="coin-grid" id="coinGrid" aria-live="polite"></div>
+            </section>
+
+            <section class="panel" id="profitCalculator">
+                <div class="panel-header">
+                    <h2>Profit Calculator</h2>
+                </div>
+                <form class="calculator-form" id="calculatorForm">
+                    <div class="input-group">
+                        <label for="hashrateValue">Hashrate</label>
+                        <div class="input-with-select">
+                            <input type="number" id="hashrateValue" placeholder="500" min="0" step="0.0001" required>
+                            <select id="hashrateUnit">
+                                <option value="1">H/s</option>
+                                <option value="1000" selected>KH/s</option>
+                                <option value="1000000">MH/s</option>
+                                <option value="1000000000">GH/s</option>
+                                <option value="1000000000000">TH/s</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="powerConsumption">Power Consumption (Watts)</label>
+                        <input type="number" id="powerConsumption" placeholder="1200" min="0" step="0.1" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="electricityCost">Electricity Cost (USD/kWh)</label>
+                        <input type="number" id="electricityCost" placeholder="0.12" min="0" step="0.0001" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="coinRevenue">Revenue per TH/s (USD/day)</label>
+                        <input type="number" id="coinRevenue" placeholder="12.5" min="0" step="0.0001" required>
+                    </div>
+                    <button type="submit" class="btn primary full">Calculate</button>
+                </form>
+                <div class="calculator-results" id="calculatorResults">
+                    <div class="result-card">
+                        <span>Daily</span>
+                        <strong id="dailyProfit">$0.00</strong>
+                    </div>
+                    <div class="result-card">
+                        <span>Weekly</span>
+                        <strong id="weeklyProfit">$0.00</strong>
+                    </div>
+                    <div class="result-card">
+                        <span>Monthly</span>
+                        <strong id="monthlyProfit">$0.00</strong>
+                    </div>
+                    <div class="result-card">
+                        <span>Yearly</span>
+                        <strong id="yearlyProfit">$0.00</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="minersMonitor">
+                <div class="panel-header">
+                    <h2>Personal Miners Monitor</h2>
+                    <button class="btn ghost" id="refreshMiners">Refresh</button>
+                </div>
+                <div class="miners-list" id="minersList"></div>
+            </section>
+
+            <section class="panel" id="poolMonitor">
+                <div class="panel-header">
+                    <h2>Mining Pool Connectivity</h2>
+                    <button class="btn ghost" id="testPools">Test Links</button>
+                </div>
+                <div class="pool-grid" id="poolGrid"></div>
+            </section>
+
+            <section class="panel panel-wide" id="aiControlCenter">
+                <div class="panel-header">
+                    <h2>AI Control Center</h2>
+                    <div class="panel-actions">
+                        <button class="btn secondary" id="triggerAIAction">Force Decision</button>
+                    </div>
+                </div>
+                <div class="ai-matrix">
+                    <div class="ai-status">
+                        <h3>Core State</h3>
+                        <div class="ai-state-indicator" id="aiStateIndicator">Synchronizing...</div>
+                        <ul class="ai-metrics" id="aiMetrics"></ul>
+                    </div>
+                    <div class="ai-log" id="aiLog" aria-live="polite"></div>
+                </div>
+            </section>
+
+            <section class="panel" id="aiDecisionLog">
+                <div class="panel-header">
+                    <h2>AI Decision Log</h2>
+                </div>
+                <ul class="decision-log" id="decisionLog"></ul>
+            </section>
+
+            <section class="panel" id="themePanel">
+                <div class="panel-header">
+                    <h2>Theme Controller</h2>
+                </div>
+                <div class="theme-swatches">
+                    <button class="swatch" data-theme="theme-neon" aria-label="Neon blue"></button>
+                    <button class="swatch" data-theme="theme-frost" aria-label="Frost white"></button>
+                    <button class="swatch" data-theme="theme-vapor" aria-label="Vapor pink"></button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>© <span id="year"></span> BeCrypto CLUB • Adaptive Mining Intelligence</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js" defer></script>
+</body>
+</html>
