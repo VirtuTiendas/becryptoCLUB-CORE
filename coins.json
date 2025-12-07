@@ -1,0 +1,37 @@
+{
+  "BTC": {
+    "slug": "btc-bitcoin",
+    "gecko": "bitcoin",
+    "mexc": "BTC_USDT",
+    "name": "Bitcoin",
+    "priority": 1
+  },
+  "ETH": {
+    "slug": "eth-ethereum",
+    "gecko": "ethereum",
+    "mexc": "ETH_USDT",
+    "name": "Ethereum",
+    "priority": 1
+  },
+  "KAS": {
+    "slug": "kaspa-kaspa",
+    "gecko": "kaspa",
+    "mexc": "KAS_USDT",
+    "name": "Kaspa",
+    "priority": 2
+  },
+  "CLORE": {
+    "slug": null,
+    "gecko": "clore-ai",
+    "mexc": "CLORE_USDT",
+    "name": "Clore",
+    "priority": 3
+  },
+  "ALEO": {
+    "slug": null,
+    "gecko": "aleo",
+    "mexc": "ALEO_USDT",
+    "name": "Aleo",
+    "priority": 3
+  }
+}
